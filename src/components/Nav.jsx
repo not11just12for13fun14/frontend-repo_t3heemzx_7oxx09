@@ -1,4 +1,4 @@
-import { Menu, ShoppingCart, Search } from "lucide-react";
+import { Menu, ShoppingCart, Search, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Nav() {
@@ -27,7 +27,8 @@ export default function Nav() {
   return (
     <header className={`fixed top-0 inset-x-0 z-50 transition-all ${scrolled ? 'backdrop-blur-xl bg-[rgba(66,13,75,0.5)] border-b border-[rgba(123,51,126,0.2)]' : 'bg-transparent'}`}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <a href="/" className="text-[rgba(245,213,224,0.95)] font-black tracking-tight text-xl">
+        <a href="/" className="flex items-center gap-2 text-[rgba(245,213,224,0.95)] font-black tracking-tight text-xl">
+          <Moon size={20} />
           The RAWKING
         </a>
         <nav className="hidden md:flex items-center gap-8 text-[rgba(245,213,224,0.8)]">

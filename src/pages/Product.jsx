@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { useCart } from '../context/CartContext'
+import MagneticButton from '../components/MagneticButton'
+import GlassCard from '../components/GlassCard'
 
 const API_BASE = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
@@ -23,13 +26,13 @@ export default function Product(){
   return (
     <section className="py-10">
       <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-8">
-        <div>
-          <div className="aspect-square rounded-xl overflow-hidden bg-[rgba(66,13,75,0.3)] backdrop-blur-xl border border-[rgba(123,51,126,0.2)]">
+        <GlassCard>
+          <div className="aspect-square rounded-3xl overflow-hidden">
             <img src={(p.images&&p.images[0])||''} alt={p.title} className="w-full h-full object-cover"/>
           </div>
-        </div>
+        </GlassCard>
         <div>
-          <h1 className="text-3xl font-bold">{p.title}</h1>
+          <motion.h1 initial={{opacity:0,y:10}} animate={{opacity:1,y:0}} className="text-3xl font-bold">{p.title}</motion.h1>
           <div className="mt-2 text-[rgba(245,213,224,0.85)]">${p.price.toFixed(2)}</div>
           <p className="mt-4 text-[rgba(245,213,224,0.85)]">{p.description}</p>
 
@@ -43,8 +46,8 @@ export default function Product(){
           </div>
 
           <div className="mt-6 flex gap-3">
-            <button onClick={addToCart} className="px-6 py-3 bg-[#7B337E] rounded-2xl font-semibold hover:shadow-[0_8px_30px_rgba(123,51,126,0.5)] transition-all">Add to Cart</button>
-            <a href={`/cart`} className="px-6 py-3 bg-[rgba(33,6,53,0.8)] rounded-2xl font-semibold border border-[rgba(123,51,126,0.2)]">Buy Now</a>
+            <MagneticButton onClick={addToCart}>Add to Cart</MagneticButton>
+            <MagneticButton as="a" href={`/cart`} className="bg-[rgba(33,6,53,0.8)] border border-[rgba(123,51,126,0.25)]">Buy Now</MagneticButton>
           </div>
         </div>
       </div>
